@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIMB Malaysia - Financial Solutions</title>
+    <link rel="icon" href="CIMB_Symbol_1.png">
+    <style>
+        :root {
+            --cimb-red: #ED1C24;
+            --cimb-dark-red: #be0d14;
+            --cimb-grey: #58595B;
+            --cimb-light-grey: #f5f5f5;
+            --cimb-white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--cimb-white);
+            color: var(--cimb-grey);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header {
+            background-color: var(--cimb-white);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            height: 40px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--cimb-grey);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--cimb-red);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            color: var(--cimb-white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--cimb-red);
+            color: var(--cimb-white);
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: var(--cimb-dark-red);
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .features h2 {
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: var(--cimb-grey);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background-color: var(--cimb-light-grey);
+            border-radius: 8px;
+            padding: 30px;
+            transition: transform 0.3s;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            color: var(--cimb-red);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-section {
+            background-color: var(--cimb-light-grey);
+            padding: 80px 0;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .contact-info h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--cimb-grey);
+        }
+        
+        .contact-info p {
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+        
+        .form-container {
+            background-color: var(--cimb-white);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--cimb-red);
+            outline: none;
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2358595B' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: calc(100% - 12px) center;
+            cursor: pointer;
+        }
+        
+        .footer {
+            background-color: var(--cimb-grey);
+            color: var(--cimb-white);
+            padding: 50px 0;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--cimb-red);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 20px;
+            }
+            
+            .nav-links li {
+                margin: 0 10px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <img src="CIMB_Logo_1.png" alt="CIMB Logo" class="logo">
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Personal Banking</a></li>
+                    <li><a href="#">Business Banking</a></li>
+                    <li><a href="#">Financing</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Forward Banking for You</h1>
+            <p>Discover tailored financial solutions designed to meet your unique needs and help you achieve your goals.</p>
+            <a href="#contact" class="btn">Get Started Today</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose CIMB?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Personalized Banking</h3>
+                    <p>Financial solutions tailored to your unique needs and goals, with expert advisors to guide you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Digital Excellence</h3>
+                    <p>Experience seamless banking with our award-winning mobile app and online banking platform.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>Regional Network</h3>
+                    <p>Access your accounts across Southeast Asia with our extensive regional presence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Ready to Get Started?</h2>
+                    <p>Complete the form to speak with one of our financial experts. We'll help you find the right solutions for your financial needs.</p>
+                    <p>Our team will contact you within 24 hours to discuss how CIMB can help you achieve your financial goals.</p>
+                </div>
+                <div class="form-container">
+                    <form class="lead-form" id="OnLineLeadForm" method="post" action="https://presales.businessbywire.com/appgts/ProcessAnonymous/OnlineLeadCapture?x=25xgkuqlsapsn67x4pygd2jkrrf8wx5j3re5mtf7w38wwwpqj45pe2xhzup7dupblyjwtyy9gdy5wk86xu7kwyzubekrrn8h5vfe7serfh3jpvul42pa">
+                        <input type="hidden" name="debug" value="1">
+                        <input type="hidden" name="debugEmail" value="james@crmnext.com">
+                        <input type=hidden name="SuccessReturnURL" value="http://www.google.com">
+                        <input type=hidden name="FailureReturnURL" value="http://www.google.com">
+                        <input id="Product" name="ProductName" type="hidden" class="field" value="9">
+                        <input type="text" id="cust_216" name="cust_216" value="878659905" style="display: none;">
+                        <input type="hidden" id="Company" name="Company" value="EBD">
+                        <select id="Layout" name="Layout" style="display: none;">
+                            <option value= "102954">Lead Management Process V2</option>
+                        </select>
+                        <select id="StatusCode" name="StatusCode" style="display: none;">
+                            <option value="100003">New</option>
+                        </select>
+                        <select id="Product" name="Product" onchange="UpdateProductName();" style="display: none;">
+                            <option value= "1180">BizChannel@CIMB</option>
+                        </select>
+                        <div class="form-group">
+                            <label class="form-label" for="LName">Organisation's Name</label>
+                            <input type="text" id="LName" name="LName" class="form-control" placeholder="Enter your company's name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="cust_5939">Your Name</label>
+                            <input type="text" id="cust_5939" name="cust_5939" class="form-control" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="Email">Email Address</label>
+                            <input type="text" id="Email" name="Email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="MobPhone">Phone Number</label>
+                            <input type="text" id="MobPhone" name="MobPhone" class="form-control" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Interested In</label>
+                            <select class="form-select">
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="financing">Financing</option>
+                                <option value="trade">Trade Finance</option>
+                                <option value="treasury">Treasury</option>
+                                <option value="cash">Cash Management</option>
+                                <option value="cards">Cards</option>
+                                <option value="deposits">Deposits & Investments</option>
+                            </select>
+                        </div>
+                        <div class="form-group product-field">
+                            <label class="form-label">Product</label>
+                            <select class="form-select product-select">
+                              <option value="" disabled selected>Select a product</option>
+                            </select>
+                          </div>
+                        <button type="submit" name="submit" id="submit" value="Submit" class="btn">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Banking Solutions</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Savings Accounts</a></li>
+                        <li><a href="#">Current Accounts</a></li>
+                        <li><a href="#">Fixed Deposits</a></li>
+                        <li><a href="#">Credit Cards</a></li>
+                        <li><a href="#">Personal Loans</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About CIMB</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Company Profile</a></li>
+                        <li><a href="#">Leadership Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Press Releases</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Find a Branch</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Security Center</a></li>
+                        <li><a href="#">Report Fraud</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                        <li><a href="#">Security Policy</a></li>
+                        <li><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 CIMB Bank. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('.lead-form');
+            const modalOverlay = document.querySelector('.modal-overlay');
+            const closeModalBtn = document.querySelector('.close-modal');
+            const closeBtn = document.querySelector('.success-message .btn');
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+</script>
+<script>
+const interestSelect = document.querySelector('.form-select');
+const productField = document.querySelector('.product-field');
+const productSelect = document.querySelector('.product-select');
+
+// Product options based on interest selection
+const productOptions = {
+  financing: [
+    { value: '1000034', text: 'Bridge finance' },
+    { value: 'Leverage finance', text: 'Leverage finance' },
+    { value: '1000038', text: 'Asset-backed loans / financings and leases' },
+    { value: '129', text: 'SME Quick Biz Financing' },
+    { value: '128', text: 'SME Biz Property Financing' },
+    { value: '133', text: 'Working Capital finance' }
+  ],
+  trade: [
+    { value: '148', text: 'Shipping Guarantee (SG)' },
+    { value: '1271', text: 'Bankers Acceptance (BA)' }
+  ],
+  treasury: [
+    { value: '1248', text: 'Foreign Exchange (FX)' },
+    { value: '1292', text: 'Profit Rates' },
+    { value: '149', text: 'Interest Rates' }
+  ],
+  cash: [
+    { value: '1200', text: 'BizChannel@CIMB' },
+    { value: '131', text: 'CIMB@Work' },
+    { value: '1249', text: 'DuitNow' }
+  ],
+  cards: [
+    { value: '1234', text: 'CIMB Debit Mastercard' },
+    { value: '1000043', text: 'Purchasing Card' },
+    { value: 'Corporate Card', text: 'Corporate Card' },
+    { value: '159', text: 'CIMB Platinum BusinessCard' }
+  ],
+  deposits: [
+    { value: '163', text: 'Business Current Account' },
+    { value: '1000098', text: 'Foreign Currency Current Account' },
+    { value: 'Fixed Deposit', text: 'Fixed Deposit' }
+  ]
+};
+
+// Update product options when interest changes
+interestSelect.addEventListener('change', function() {
+  const selectedInterest = this.value;
+  
+  // Clear current options
+  productSelect.innerHTML = '<option value="" disabled selected>Select a product</option>';
+  
+  // If a valid interest is selected
+  if (selectedInterest && productOptions[selectedInterest]) {
+    // Show the product field
+    productField.style.display = 'block';
+    
+    // Add new options based on selected interest
+    productOptions[selectedInterest].forEach(option => {
+      const optionElement = document.createElement('option');
+      optionElement.value = option.value;
+      optionElement.textContent = option.text;
+      productSelect.appendChild(optionElement);
+    });
+  } else {
+    // Hide the product field if no valid selection
+    productField.style.display = 'none';
+  }
+});
+</script>
+
+<script> 
+	function UpdateProductName() {
+    var prodObj = document.getElementById('Product');
+    var prodNameObj = document.getElementById('ProductName');
+    prodNameObj.value = prodObj.options[prodObj.selectedIndex].text;
+}
+
+function UpdateTerritoryName() {
+    var terrObj = document.getElementById('Territory');
+    var terrNameObj = document.getElementById('TerritoryName');
+    terrNameObj.value = terrObj.options[terrObj.selectedIndex].text;
+}
+
+function IsValidForm() {
+    var errMessage = '';
+    if (document.getElementById('LName').value == '') {
+        errMessage = 'Enter LastName.\n';
+    }
+    if (document.getElementById('Company').value == '') {
+        errMessage += 'Enter Company.\n';
+    }
+    if (!IsValidEmail()) {
+        errMessage += 'Not a valid EmailID.\n';
+    }
+    if (!IsValidWebURL()) {
+        errMessage += 'Not a valid WebUrl.\n';
+    }
+    if (errMessage != '') {
+        alert(errMessage);
+        return false;
+    }
+    return true;
+}
+
+function IsValidEmail() {
+    if (document.getElementById('Email') == null) return true;
+    var inem = document.getElementById("Email").value;
+    if (inem != null && inem != '') {
+        var filter = /^(\w+(?:\.\w+)*)@((?:\w+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        if (!filter.test(inem)) return false;
+    }
+    return true;
+}
+
+function IsValidWebURL() {
+    return true;
+    var website = document.getElementById("Website").value;
+    var URL = /^((file|http):\/\/\S)*$/;
+    if (!URL.test(website)) return false;
+    return true;
+} 
+
+</script>
+<!-- <script> 
+function UpdateProductName() {
+    var prodObj = document.getElementById('Product');
+    var prodNameObj = document.getElementById('ProductName');
+    prodNameObj.value = prodObj.options[prodObj.selectedIndex].text;
+}
+
+function UpdateTerritoryName() {
+    var terrObj = document.getElementById('Territory');
+    var terrNameObj = document.getElementById('TerritoryName');
+    terrNameObj.value = terrObj.options[terrObj.selectedIndex].text;
+}
+
+function IsValidForm() {
+    var errMessage = '';
+    if (document.getElementById('LName').value == '') {
+        errMessage = 'Enter LastName.\n';
+    }
+    if (!IsValidEmail()) {
+        errMessage += 'Not a valid EmailID.\n';
+    }
+    if (errMessage != '') {
+        alert(errMessage);
+        return false;
+    }
+    return true;
+}
+
+function IsValidEmail() {
+    if (document.getElementById('Email') == null) return true;
+    var inem = document.getElementById("Email").value;
+    if (inem != null && inem != '') {
+        var filter = /^(\w+(?:\.\w+)*)@((?:\w+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        if (!filter.test(inem)) return false;
+    }
+    return true;
+}
+
+function IsValidWebURL() {
+    return true;
+    var website = document.getElementById("Website").value;
+    var URL = /^((file|http):\/\/\S)*$/;
+    if (!URL.test(website)) return false;
+    return true;
+} 
+</script> --->
+
+</body>
+</html>
